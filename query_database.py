@@ -19,7 +19,7 @@ def query_database(city):
     cur = conn.cursor()
     cur.execute("SELECT * FROM cities where ascii_name=%s LIMIT 25;", (city,))
 
-    names = ('city_id', 'name', 'ascii_name', 'alt_name', 'lat', 'lon',
+    names = ('city_id', 'name', 'ascii_name', 'alt_name', 'state', 'lat', 'lon',
              'country', 'population', 'tz')
     results = []
     for record in cur.fetchall():
@@ -31,6 +31,7 @@ def query_database(city):
 def main():
     city = "Des Moines"
     result = query_database(city)
+    print(result)
 
 
 if __name__ == "__main__":

@@ -43,11 +43,12 @@ def create_insert(fields):
     :return: insert string
     """
     altnames = fields[3].split(',')
-    stmt = """INSERT INTO cities (city_id, name, ascii_name, alt_name, lat,
-           lon, country, population, tz) VALUES (%s, %s, %s, %s, %s, %s, 
-           %s, %s, %s);""", (int(fields[0]), fields[1], fields[2], altnames,
-                              float(fields[4]), float(fields[5]), fields[8],
-                              int(fields[14]), fields[17])
+    stmt = "INSERT INTO cities (city_id, name, ascii_name, alt_name, state, " \
+           "lat, lon, country, population, tz) VALUES (%s, %s, %s, %s, %s, " \
+           "%s, %s, %s, %s, %s);""", (int(fields[0]), fields[1], fields[2],
+                                      altnames, fields[10], float(fields[4]),
+                                      float(fields[5]), fields[8],
+                                      int(fields[14]), fields[17])
     return stmt
 
 
@@ -78,7 +79,7 @@ def main():
     basepath = '/home/personal/github/dsi-coding-challenge/'
     path = basepath + 'data/canada_usa_cities.tsv'
 
-    #create_table()
+    create_table()
     load_data(path)
 
 
