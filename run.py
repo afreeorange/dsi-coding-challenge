@@ -2,7 +2,7 @@
 """
 Run DSI app
 """
-from app import app
+from backend import app
 
 __author__ = "Shalyn Guthery"
 
