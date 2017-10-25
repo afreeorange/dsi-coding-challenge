@@ -10,6 +10,7 @@ create_query = """ CREATE TABLE cities (
                     name VARCHAR(255) NOT NULL,
                     ascii_name VARCHAR(255) NOT NULL,
                     alt_name VARCHAR(255)[],
+                    state VARCHAR(5),
                     lat REAL NOT NULL,
                     lon REAL NOT NULL,
                     country VARCHAR(5),
