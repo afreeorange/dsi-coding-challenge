@@ -76,7 +76,7 @@ def load_data(filename):
 
 
 def main():
-    basepath = '/home/personal/github/dsi-coding-challenge/'
+    basepath = '/home/personal/github/dsiChallenge/'
     path = basepath + 'data/canada_usa_cities.tsv'
 
     create_table()
