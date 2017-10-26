@@ -11,73 +11,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
-<!--<script type="text/jsx">
-  var FilteredList = React.createClass({
-    filterList: function(event){
-      var updatedList = this.state.initialItems;
-      updatedList = updatedList.filter(function(item){
-        return item.toLowerCase().search(
-          event.target.value.toLowerCase()) !== -1;
-      });
 
-      this.setsState({items: updatedList});
-    },
-    getInitialState: function(){
-      return {
-        initialItems: ["Number 1", "Number 2"],
-        items: []
-      }
-    },
-    componentWillMount: function(){
-      this.setState({items: this.state.initialItems})
-    },
-    render: function(){
-      return (
-        <div className="filter-list">
-          <form>
-          <fieldset className="form-group">
-          <input type="text" className="form-control form-control-lg"
-          placeholder="Search" onChange= {this.filterList}/>
-          </fieldset>
-          </form>
-        <List items={this.state.items}/>
-        </div>
-      );
-    }
-  });
-
-  var List = React.createClass({
-    render: function(){
-      return (
-        <ul className="list-group>
-        {
-          this.props.items.map(function(item) {
-            return <li className="list-group-item"
-            data-category={item} key={item}>{item}</li>
-          })
-        }
-        </ul>
-      )
-    }
-  });
-  ReactDOM.render(<FilteredList/>, document.getElementById('content'));
-</script>-->
-<!--<script type="text/jsx">
-  export class Container extends React.Component {
-    render() {
-      if (!this.props.loaded) {
-        return <div>Loading...</div>
-      }
-      return (
-        <div>Map will go here</div>
-      )
-    }
-  }
-
-  export default GoogleApiComponent({
-    apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo"
-  )}(Container)
-</script>-->
 <div id="queryplace" />
 <script type="text/javascript">
   function query(){
