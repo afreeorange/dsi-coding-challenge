@@ -2,9 +2,10 @@
 """
 Manage app
 """
-from flask_script import Manager
-from backend import app
 import unittest
+
+from backend import app
+from flask_script import Manager
 
 manager = Manager(app)
 

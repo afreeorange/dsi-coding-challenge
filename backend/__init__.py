@@ -7,8 +7,7 @@ import os
 
 __author__ = "Shalyn Guthery"
 dire = os.path.abspath('templates')
-app = Flask(__name__, instance_relative_config=True,
-            template_folder=dire, static_url_path='/src')
+app = Flask(__name__, instance_relative_config=True, template_folder=dire)
 import views  # load views
 
 # Load config file
