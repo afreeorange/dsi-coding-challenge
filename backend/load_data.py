@@ -108,8 +108,8 @@ def execute_query(query):
 
 
 def main():
-    basepath = '/home/personal/github/dsiChallenge/'
-    path = basepath + 'data/canada_usa_cities.tsv'
+    basepath = os.getcwd()
+    path = basepath + '/data/canada_usa_cities.tsv'
 
     table_exists = check_for_table()
     if table_exists:
