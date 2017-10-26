@@ -2,8 +2,8 @@
 """
 Tests for database connections and actions
 """
-from backend.tests.base import BaseTestCase
 from backend.query_database import query_database, fuzzy_query
+from backend.tests.base import BaseTestCase
 
 
 class TestCitiesService(BaseTestCase):

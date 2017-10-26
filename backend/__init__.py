@@ -3,10 +3,11 @@
 Initialization file for flask app
 """
 from flask import Flask
+import os
 
 __author__ = "Shalyn Guthery"
-
-app = Flask(__name__, instance_relative_config=True)
+dire = os.path.abspath('templates')
+app = Flask(__name__, instance_relative_config=True, template_folder=dire)
 import views  # load views
 
 # Load config file

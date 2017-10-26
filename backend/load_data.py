@@ -79,7 +79,11 @@ def main():
     basepath = '/home/personal/github/dsiChallenge/'
     path = basepath + 'data/canada_usa_cities.tsv'
 
+    # Create table for data - once it's create it is not needed again
+    # Comment it out to make sure you don't create the table again!
     create_table()
+    
+    # Load data from path into table created by create_table()
     load_data(path)
 
 

@@ -2,8 +2,8 @@
 """
 Base testcase
 """
-from flask_testing import TestCase
 from backend import app
+from flask_testing import TestCase
 
 
 class BaseTestCase(TestCase):

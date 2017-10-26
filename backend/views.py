@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 """
-View configuration file
+View configuration file for route information
 """
-from flask import render_template, jsonify, request
 from backend import app
 from backend.query_database import query_database, fuzzy_query
+from flask import render_template, jsonify, request
 
 __author__ = "Shalyn Guthery"
 
@@ -27,9 +27,13 @@ def cities(city):
 @app.route('/cities', methods=['GET'])
 def cities_like():
     cid = request.args.get('like')
-    result = fuzzy_query(cid)
-    response_object = {
-        'status': 'success',
-        'cities': result
-    }
-    return jsonify(response_object), 200
+    if cid is not None:
+        result = fuzzy_query(cid)
+        response_object = {
+            'status': 'success',
+            'cities': result
+        }
+
+        return jsonify(response_object), 200
+    return render_template("cities.html")
+

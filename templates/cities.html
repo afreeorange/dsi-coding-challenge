@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{%block body %}
+
+<div class="jumbotron">
+  <h1>Type a city below to learn more!</h1>
+  <!--<p class="lead">Let's learn about some cities!</p>-->
+</div>
+<div id="content" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+
+<div id="queryplace" />
+<script type="text/javascript">
+  function query(){
+    var exact = document.getElementById("exactcity").value;
+    $.ajax({
+      type: "GET",
+      url: "/backend/query_database.py"
+      data: {city: exact},
+      success: callbackFunc
+    });
+  }
+
+  function callbackFunc(response) {
+    console.log(response);
+  }
+
+  function fuzzyquery(){
+
+  }
+</script>
+
+<div id ="search">
+  <form name="exact form" onSubmit="JavaScript:query()" method="GET">
+    <input type="text" id="exactcity" name="box1">
+    <input type="submit" value="Exact" name="Exact" id="exact">
+  </form>
+</div>
+<div id ="fuzzysearch">
+  <form name="fuzzy form" onSubmit="JavaScript:fuzzyquery()" method="GET">
+    <input type="text" id="fuzzycity" name="box2">
+    <input type="submit" value="Similar" name="Like This" id="fuzzy">
+  </form>
+</div>
+
+<div id="map" style="width:1000px;height:500px"> Map here!</div>
+<script>
+function myMap() {
+  var mapOptions = {
+    center: new google.maps.LatLng(41.6005, -93.6091),
+    zoom: 10,
+    mapTypeId: google.maps.MapTypeId.HYBRID
+  }
+var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=APIKEYHERE&callback=myMap"></script>
+
+{% endblock %}
