@@ -7,14 +7,23 @@ In order to use the backend scripts to create a postgres table and access it, a 
 sudo apt-get update
 sudo apt-get install postgresql postgresql-contrib
 ```
+
 2. Create a user that has read and write access to database.
+```
+sudo -u postgres psql postgres
+CREATE USER xxx PASSWORD 'xxx';
+ALTER USER xxx with SUPERUSER;
+\q
+```
+
 3. Create database for table to reside in.
 ```
 createdb DATABASE_NAME
 ```
 4. Log into psql and enable fuzzy matching.
 ```
-psql -U user -c 'CREATE EXTENSION fuzzystrmatch;'
+psql -d DBNAME
+CREATE EXTENSION fuzzystrmatch;
 ```
 5. Store psql password and database name as environment variables in ~/.bashrc
 ```
@@ -53,6 +62,10 @@ pip install virtualenv
 pip install virtualenvwrapper
 export WORKON_HOME=~/Envs
 source PATH/TO/bin/virtualenvwrapper.sh
+```
+To find your path to virtualenvwrapper.sh use:
+```
+which virtualenvwrapper.sh
 ```
 
 Will only need to run this command once.
