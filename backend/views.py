@@ -17,11 +17,18 @@ def index():
 @app.route('/cities/<city>', methods=['GET'])
 def cities(city):
     result = query_database(city.upper())
-    response_object = {
-        'status': 'success',
-        'cities': result
-    }
-    return jsonify(response_object), 200
+    if result != []:
+        response_object = {
+            'status': 'success',
+            'cities': result
+        }
+        return jsonify(response_object), 200
+    else:
+        response_object = {
+            'status': 'name error',
+            'message': 'city could not be found'
+        }
+        return jsonify(response_object), 400
 
 
 @app.route('/cities', methods=['GET'])
@@ -29,11 +36,18 @@ def cities_like():
     cid = request.args.get('like')
     if cid is not None:
         result = fuzzy_query(cid.upper())
-        response_object = {
-            'status': 'success',
-            'cities': result
-        }
+        if result != []:
+            response_object = {
+                'status': 'success',
+                'cities': result
+            }
+            return jsonify(response_object), 200
+        else:
+            response_object = {
+                'status': 'name error',
+                'message': 'city could not be found'
+            }
+            return jsonify(response_object), 400
 
-        return jsonify(response_object), 200
     return render_template("cities.html")
 
