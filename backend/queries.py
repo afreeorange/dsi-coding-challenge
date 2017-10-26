@@ -17,3 +17,6 @@ create_query = """ CREATE TABLE cities (
                     population INTEGER,
                     tz VARCHAR(255))
                     """
+
+check_query = "SELECT exists(SELECT * from information_schema.tables where " \
+              "table_name='cities')"

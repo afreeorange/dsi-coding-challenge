@@ -11,7 +11,7 @@ location field consists of a point (longitude, latitude)
 """
 import psycopg2
 import os
-from queries import create_query
+from queries import create_query, check_query
 
 __author__ = "Shalyn Guthery"
 
@@ -43,12 +43,15 @@ def create_insert(fields):
     :return: insert string
     """
     altnames = fields[3].split(',')
+    # convert alt names list to uppercase
+    altnames = [x.upper() for x in altnames]
     stmt = "INSERT INTO cities (city_id, name, ascii_name, alt_name, state, " \
            "lat, lon, country, population, tz) VALUES (%s, %s, %s, %s, %s, " \
-           "%s, %s, %s, %s, %s);""", (int(fields[0]), fields[1], fields[2],
-                                      altnames, fields[10], float(fields[4]),
-                                      float(fields[5]), fields[8],
-                                      int(fields[14]), fields[17])
+           "%s, %s, %s, %s, %s);""", (int(fields[0]), fields[1].upper(),
+                                      fields[2].upper(), altnames,
+                                      fields[10].upper(), float(fields[4]),
+                                      float(fields[5]), fields[8].upper(),
+                                      int(fields[14]), fields[17].upper())
     return stmt
 
 
@@ -75,14 +78,47 @@ def load_data(filename):
     return None
 
 
+def check_for_table():
+    """
+    Check to see if our table currently exists
+    :return: exist_bool (BOOLEAN) true if table exists
+    """
+    conn = psycopg2.connect("dbname=" + os.environ.get('DB') +
+                            " password=" + os.environ.get('PASSWORD'))
+    cur = conn.cursor()
+    cur.execute(check_query)
+    exist_bool = bool(cur.fetchone()[0])
+    cur.close()
+    conn.commit()
+
+    return exist_bool
+
+
+def execute_query(query):
+    """
+    :param query: string to use with psycopg2
+    :return: None
+    """
+    conn = psycopg2.connect("dbname=" + os.environ.get('DB') +
+                            " password=" + os.environ.get('PASSWORD'))
+    cur = conn.cursor()
+    cur.execute(query)
+    cur.close()
+    conn.commit()
+
+
 def main():
     basepath = '/home/personal/github/dsiChallenge/'
     path = basepath + 'data/canada_usa_cities.tsv'
 
-    # Create table for data - once it's create it is not needed again
-    # Comment it out to make sure you don't create the table again!
-    create_table()
-    
+    table_exists = check_for_table()
+    if table_exists:
+        # drop table
+        execute_query("DROP TABLE cities;")
+    else:
+        # create new table
+        create_table()
+
     # Load data from path into table created by create_table()
     load_data(path)
 
