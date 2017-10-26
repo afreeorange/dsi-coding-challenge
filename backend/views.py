@@ -2,9 +2,9 @@
 """
 View configuration file
 """
-from flask import render_template, jsonify
+from flask import render_template, jsonify, request
 from backend import app
-from backend.query_database import query_database
+from backend.query_database import query_database, fuzzy_query
 
 __author__ = "Shalyn Guthery"
 
@@ -14,10 +14,20 @@ def index():
     return render_template("index.html")
 
 
-@app.route('/cities/<string:city>', methods=['GET'])
+@app.route('/cities/<city>', methods=['GET'])
 def cities(city):
-    print(city)
     result = query_database(city)
+    response_object = {
+        'status': 'success',
+        'data': result
+    }
+    return jsonify(response_object), 200
+
+
+@app.route('/cities', methods=['GET'])
+def cities_like():
+    cid = request.args.get('like')
+    result = fuzzy_query(cid)
     response_object = {
         'status': 'success',
         'data': result
