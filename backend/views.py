@@ -19,7 +19,7 @@ def cities(city):
     result = query_database(city)
     response_object = {
         'status': 'success',
-        'data': result
+        'cities': result
     }
     return jsonify(response_object), 200
 
@@ -30,6 +30,6 @@ def cities_like():
     result = fuzzy_query(cid)
     response_object = {
         'status': 'success',
-        'data': result
+        'cities': result
     }
     return jsonify(response_object), 200
