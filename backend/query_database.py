@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 """
 Query PostgreSQL database table and receive
-JSON object as result
+pre-JSON object as result
 """
 import psycopg2
 import os
-import json
 
 __author__ = "Shalyn Guthery"
 
@@ -49,7 +48,7 @@ def fuzzy_query(city):
 
 
 def main():
-    city = "Des Moines"
+    city = "des moines"
     result1 = query_database(city)
     print(result1)
     result2 = fuzzy_query(city)

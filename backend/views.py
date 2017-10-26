@@ -16,7 +16,7 @@ def index():
 
 @app.route('/cities/<city>', methods=['GET'])
 def cities(city):
-    result = query_database(city)
+    result = query_database(city.upper())
     response_object = {
         'status': 'success',
         'cities': result
@@ -28,7 +28,7 @@ def cities(city):
 def cities_like():
     cid = request.args.get('like')
     if cid is not None:
-        result = fuzzy_query(cid)
+        result = fuzzy_query(cid.upper())
         response_object = {
             'status': 'success',
             'cities': result
