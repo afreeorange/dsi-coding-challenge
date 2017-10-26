@@ -24,8 +24,7 @@ def query_database(city):
     results = []
     for record in cur.fetchall():
         results.append(dict(zip(names, record)))
-
-    return json.dumps(results)
+    return results
 
 
 def main():
