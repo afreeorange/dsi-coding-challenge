@@ -1,7 +1,5 @@
 # Python Dependencies
 psycopg2
-json
-os
 click==6.7
 Flask==0.12.2
 itsdangerous==0.24

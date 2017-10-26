@@ -8,7 +8,7 @@ import os
 __author__ = "Shalyn Guthery"
 dire = os.path.abspath('templates')
 app = Flask(__name__, instance_relative_config=True, template_folder=dire)
-import views  # load views
+import backend.views  # load views
 
 # Load config file
 app.config.from_object('backend.config')
