@@ -18,7 +18,7 @@ def query_database(city):
     conn = psycopg2.connect("dbname=" + os.environ.get('DB') +
                             " password=" + os.environ.get('PASSWORD'))
     cur = conn.cursor()
-    cur.execute("SELECT * FROM cities where ascii_name=%s LIMIT 25;", (city,))
+    cur.execute("SELECT * FROM cities where name=%s LIMIT 25;", (city,))
 
     names = ('city_id', 'name', 'ascii_name', 'alt_name', 'state', 'lat', 'lon',
              'country', 'population', 'tz')
@@ -37,7 +37,8 @@ def fuzzy_query(city):
     conn = psycopg2.connect("dbname=" + os.environ.get('DB') +
                             " password=" + os.environ.get('PASSWORD'))
     cur = conn.cursor()
-    cur.execute("SELECT * FROM cities where soundex(ascii_name) = soundex(%s) OR ascii_name LIKE %s LIMIT 25;", (city, '%'+city+'%'))
+    cur.execute("SELECT * FROM cities where soundex(name) = soundex(%s) OR "
+                "name LIKE %s LIMIT 25;", (city, '%'+city+'%'))
 
     names = ('city_id', 'name', 'ascii_name', 'alt_name', 'state', 'lat', 'lon',
              'country', 'population', 'tz')
