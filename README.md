@@ -16,7 +16,7 @@ Before you get started
 Requirements
 ------------
 
-You'll be designing a RESTful API that allows its clients to search through the datafile `data/canada_usa_cities.tsv` in this repository which contains a big list of cities in the United States and Canada. All parts entail a single-endpoint exposed at `/cities`.  It should return _at most_ 25 matches based on simple search criteria. Content-type should be `application/json` with the appropriate HTTP status code.
+You'll be designing a RESTful API that allows its clients to search through the datafile `data/canada_usa_cities.tsv` in this repository which contains a big list of cities in the United States and Canada. Be sure to look at the README.md file for information on what each column contains. All parts entail a single-endpoint exposed at `/cities`.  It should return _at most_ 25 matches based on simple search criteria. Content-type should be `application/json` with the appropriate HTTP status code.
 
 All requirements are provided as a bare minimum. Feel free to fill in (and document) anything missing. How you handle any edge/test/unusual cases that aren't specified here is entirely up to you.
 
